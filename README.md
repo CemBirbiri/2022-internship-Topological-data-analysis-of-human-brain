@@ -44,7 +44,7 @@ some filters defined on data points while capturing topological and geometric in
 at a specified resolution and gain. The filter function (also called a lens) is the metric that
 allows to map our data points. An example of Mapper algorithm of a 'hand' dataset is shown below:
 
-<img width="579" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
+<img width="250" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
 
 ## The final Dataset:
 
@@ -84,7 +84,7 @@ My final dataset(998,51) consists of following features :
 
 The mapper result is shown below:
 
-<img width="565" alt="Screen Shot 2022-11-07 at 16 35 46" src="https://user-images.githubusercontent.com/46814542/200350732-c4f7b6f5-ffba-46f4-91bd-5667def1d6de.png">
+<img width="300" alt="Screen Shot 2022-11-07 at 16 41 15" src="https://user-images.githubusercontent.com/46814542/200352096-1167d846-2c1f-4845-b22f-c1f3b76ee075.png">
 
 
 ## Significant characteristics and clinical features specific to subgroups :
