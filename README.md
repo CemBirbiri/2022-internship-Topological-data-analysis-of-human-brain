@@ -4,12 +4,9 @@ I finished my internship at [INRIA,France in MathNeuro research group](https://t
 [The Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) was used in this project that consists of 998 patients with cognition, motor, emotion characteristics as well as brain features: volume, thickness, surface area, gray matter volume, white matter volume,...
 
 
+I applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. The [DyNeuSR](https://braindynamicslab.github.io/dyneusr/) and [GUDHI](https://gudhi.inria.fr/) libraries were used in topological data analysis.
 
-
-
-applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. The [DyNeuSR](https://braindynamicslab.github.io/dyneusr/) and [GUDHI](https://gudhi.inria.fr/) libraries were used in topological data analysis.
-
-A summary of the internship is in below:
+A summary of the internship is below:
 
 # What is Topological Data Analysis (TDA) ?
 
@@ -40,3 +37,52 @@ science is currently a very active research domain.
 2. Applying the Mapper algorithm and extracting the low-dimensional shape of data points, which is the visualization result obtained from Mapper ;
 3. Detecting communities from the result of Mapper ;
 4. Discovering what features make these communities unique.
+
+
+The key idea of the Mapper algorithm is to map data points into a metric space using
+some filters defined on data points while capturing topological and geometric information
+at a specified resolution and gain. The filter function (also called a lens) is the metric that
+allows to map our data points. An example of Mapper algorithm of a 'hand' dataset is shown below:
+<img width="579" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
+
+## The final Dataset:
+
+My final dataset(998,51) consists of following features :
+
+1. Cognition columns(14)
+2. Motor columns(4)
+3. Emotion columns(8)
+4. Age and Gender columns(2)
+5. Anterior Cingulate Cortex(8) :
+- Left caudal-anterior-cingulate Surface Area,
+- Left rostral-anterior-cingulate Surface Area,
+- Right caudal-anterior-cingulate Surface Area,
+- Right rostral-anterior-cingulate Surface Area,
+- Left caudal-anterior-cingulate Average Thickness,
+- Left rostral-anterior-cingulate Average Thickness,
+- Right caudal-anterior-cingulate Average Thickness,
+- Right rostral-anterior-cingulate Average Thickness,
+6. Orbitofrontal Cortex(8) :
+- Left lateral-orbitofrontal Surface Area,
+- Left medial-orbitofrontal Surface Area,
+- Right lateral-orbitofrontal Surface Area,
+- Right medial-orbitofrontal Surface Area,
+- Left lateral-orbitofrontal Average Thickness,
+- Left medial-orbitofrontal Average Thickness,
+- Right lateral-orbitofrontal Average Thickness,
+- Right medial-orbitofrontal Average Thickness
+7. Total cortical gray matter volume(1)
+8. Total subcortical gray matter volume(1)
+9. 9. Total gray matter volume(1)
+10. Supratentorial volume(1)
+11. Total cortical white matter volume(1)
+12. Topological features(2) extracted from connectivity matrices of patients
+
+
+## RESULTS
+
+The mapper result is shown below:
+<img width="565" alt="Screen Shot 2022-11-07 at 16 35 46" src="https://user-images.githubusercontent.com/46814542/200350732-c4f7b6f5-ffba-46f4-91bd-5667def1d6de.png">
+
+
+
