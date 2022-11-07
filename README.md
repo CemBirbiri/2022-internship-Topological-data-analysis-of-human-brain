@@ -44,7 +44,7 @@ some filters defined on data points while capturing topological and geometric in
 at a specified resolution and gain. The filter function (also called a lens) is the metric that
 allows to map our data points. An example of Mapper algorithm of a 'hand' dataset is shown below:
 
-<img width="250" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
+<img width="400" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
 
 ## The final Dataset:
 
@@ -84,7 +84,7 @@ My final dataset(998,51) consists of following features :
 
 The mapper result is shown below:
 
-<img width="300" alt="Screen Shot 2022-11-07 at 16 41 15" src="https://user-images.githubusercontent.com/46814542/200352096-1167d846-2c1f-4845-b22f-c1f3b76ee075.png">
+<img width="450" alt="Screen Shot 2022-11-07 at 16 41 15" src="https://user-images.githubusercontent.com/46814542/200352096-1167d846-2c1f-4845-b22f-c1f3b76ee075.png">
 
 
 ## Significant characteristics and clinical features specific to subgroups :
@@ -106,4 +106,18 @@ Avg Thickness and Sustained Attention.
 This group(n=282) consists of patients with mixed age i.e. both [22-30] and [31+].
 There are 23 clinical features specific to this group with only one variable that is unique :
 Executive Function/ Cognitive Flexibility
+
+We found following results that are parallel with literature:
+1. Total and subcortical gray matter volume decrease with age
+2. Cognitive performance of humans decrease with age (Working Memory, Language/Vocabulary comprehension, Fluid Intelligence, Executive Function/Cognitive Flexibility)
+3. Surface Area in Orbito-frontal Cortices decrease when people get old.
+4. Lateral-frontal Cortical thickness decrease with age
+5. Total Cortical White Matter Volume decrease with age
+6. Supratentorial volume reduces with age
+7. Rostral-anterior-cingulate Avg Thickness decrease with age(BONUS)
+
+The detailed explanation of this research can be found in Internship_report_for_publication_Neursy.pdf
+
+
+
 
