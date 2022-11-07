@@ -43,6 +43,7 @@ The key idea of the Mapper algorithm is to map data points into a metric space u
 some filters defined on data points while capturing topological and geometric information
 at a specified resolution and gain. The filter function (also called a lens) is the metric that
 allows to map our data points. An example of Mapper algorithm of a 'hand' dataset is shown below:
+
 <img width="579" alt="Screen Shot 2022-11-07 at 16 32 13" src="https://user-images.githubusercontent.com/46814542/200349905-b2812411-7254-4ad0-9302-8bd35ea1aa16.png">
 
 ## The final Dataset:
@@ -82,7 +83,27 @@ My final dataset(998,51) consists of following features :
 ## RESULTS
 
 The mapper result is shown below:
+
 <img width="565" alt="Screen Shot 2022-11-07 at 16 35 46" src="https://user-images.githubusercontent.com/46814542/200350732-c4f7b6f5-ffba-46f4-91bd-5667def1d6de.png">
 
 
+## Significant characteristics and clinical features specific to subgroups :
+#### G1[31+]
+We found 25 clinical variables significantly specific to G1[31+] (n=197). Among
+these clinical variables, there is only one clinical feature that is unique to G1[31+], which
+is Negative Affect (Sadness). 
+
+#### G2[22-30]
+There are 24 clinical variables significantly specific to G2[22-30] (n=263). There is
+no feature that is only unique to this group. 
+
+#### G3[22-30] 
+24 clinical variables were found to be significantly specific to G3[22-30] (n=335).
+There are two variables that are unique to this group such as Left rostral-anterior-cingulate
+Avg Thickness and Sustained Attention. 
+
+#### G4[mixed age]
+This group(n=282) consists of patients with mixed age i.e. both [22-30] and [31+].
+There are 23 clinical features specific to this group with only one variable that is unique :
+Executive Function/ Cognitive Flexibility
 
