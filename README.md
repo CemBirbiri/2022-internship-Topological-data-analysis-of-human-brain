@@ -1,9 +1,13 @@
 # Internship-2022-Topological-Data-Analysis
 I finished my internship at [INRIA,France in MathNeuro research group](https://team.inria.fr/mathneuro/) under the supervision of [Prof Mathieu Desroches](https://www-sop.inria.fr/members/Mathieu.Desroches/).
 
-I used [the Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) that consists of 998 patients with cognition, motor, emotion characteristics as well as brain features: volume, thickness, surface area, gray matter volume, white matter volume,...
+[The Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) was used in this project that consists of 998 patients with cognition, motor, emotion characteristics as well as brain features: volume, thickness, surface area, gray matter volume, white matter volume,...
 
-I applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. A summary of the internship is in below:
+
+
+I used 
+
+applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. A summary of the internship is in below:
 
 # What is Topological Data Analysis (TDA) ?
 
