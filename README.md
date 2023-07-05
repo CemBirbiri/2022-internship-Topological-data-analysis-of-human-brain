@@ -116,7 +116,6 @@ We found following results that are parallel with literature:
 6. Supratentorial volume reduces with age
 7. Rostral-anterior-cingulate Avg Thickness decrease with age(BONUS)
 
-The detailed explanation of this research can be found in DyNeuSR_report.pdf
 
 
 
