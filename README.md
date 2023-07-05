@@ -72,9 +72,9 @@ My final dataset(998,51) consists of following features :
 - Left medial-orbitofrontal Average Thickness,
 - Right lateral-orbitofrontal Average Thickness,
 - Right medial-orbitofrontal Average Thickness
-7. Total cortical gray matter volume(1)
-8. Total subcortical gray matter volume(1)
-9. 9. Total gray matter volume(1)
+7.Total cortical gray matter volume(1)
+8.Total subcortical gray matter volume(1)
+9.Total gray matter volume(1)
 10. Supratentorial volume(1)
 11. Total cortical white matter volume(1)
 12. Topological features(2) extracted from connectivity matrices of patients
