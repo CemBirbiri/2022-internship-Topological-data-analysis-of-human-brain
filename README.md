@@ -101,7 +101,7 @@ will generate a graph with a different shape, thus filters allow one to explore 
 
 
 Here is a list of filter functions that I used in my internship work:
-- **A column of the dataset.**  If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
+- **A column of the dataset.**  If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. [Then, that specific column can be used to separate the data points based on it](https://www.nature.com/articles/srep01236). Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
 
 - **$L_p$ Norm:** The filter function can be chosen based on the $L_p$ norm for each data point. Below, $f_{p,k}$ represents the filter function, $\vec{V}$ denotes the coordinates of each row vector: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature(column) and $s$ is total number of features in the dataset. The $L_p$ norm of an individual patient can be calculated as follows:
 
@@ -118,7 +118,7 @@ Note that when $p = 2$ and $k=1$, then the above formula corresponds to the $L_2
 - **Principal Component Analysis (PCA):** PCA is a well-known dimension reduction technique. The first component of the PCA result is used as a filter. I have used the PCA function from Sklearn.
 
 
-The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, in~\cite{diabets} where the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $L$-infinity centrality were used as the first and second filters in our Mapper implementation.
+The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, [in * *Identification of type 2 diabetes subgroups through topological analysis of patient similarity* *](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4780757/) the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $L$-infinity centrality were used as the first and second filters in our Mapper implementation.
 
 
 ## 3.2 Selecting gain and resolution parameters
@@ -135,7 +135,7 @@ The gain is the overlap percentage of the intervals covering each filter image. 
  
 ## 3.4 Resulted Mapper visualization
 
-Finally, a simplicial complex is created and it looks like a graph (see Fig.~\ref{mapper}, right panel). The vertices/nodes of the graph represent the cluster sets. The edges represent connectivity information of the complex where an edge is added between two nodes whenever two clusters share the same data points.
+Finally, a simplicial complex is created and it looks like a graph (see Fig.4, right panel). The vertices/nodes of the graph represent the cluster sets. The edges represent connectivity information of the complex where an edge is added between two nodes whenever two clusters share the same data points.
 
 Coloring the nodes makes the simplicial complex more understandable. The color of a vertex shows the value of the filter function. For instance, in Fig.7, yellow corresponds to high values and blue to low values. More details about the parameters of the Mapper algorithm and how to choose them wisely are given in the following sections.
 
@@ -168,7 +168,7 @@ Community detection is the process where unique groups are found from the comple
 ## 4.1 Finding communities
 Finding different communities from the Mapper result corresponds to finding the topological features of the simplicial complex. Up to this point, the Mapper algorithm has converted our data into a simplicial complex which is called the Mapper Complex. Topological features of the Mapper complex represent $0$- or $1$-dimensional topological features such as connected components, up/down branches, and loops. Therefore, the topological features of the Mapper complex represent the different communities. So if we extract topological features from the Mapper complex, we can obtain these communities.
 
- The GUDHI library was used to extract topological features from the mapper complex. Connected components and loops are computed with SciPy functions~\cite{scipy}, and branches are detected with ``Union-Find'' and $0$-dimensional persistence of the 1-skeleton. Each shape in Fig.~\ref{communities} below shows one community colored in yellow.
+ The GUDHI library was used to extract topological features from the mapper complex. Connected components and loops are computed with [SciPy functions](https://scipy.org/), and branches are detected with ``Union-Find'' and $0$-dimensional persistence of the 1-skeleton. Each shape in Fig.8 below shows one community colored in yellow.
 
 <img width="600" alt="Screenshot 2023-07-06 at 13 57 10" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/ceb1f536-8c7c-4f05-a1b0-f9d663cb4a3e">
 
@@ -176,7 +176,7 @@ Finding different communities from the Mapper result corresponds to finding the 
 ## 4.2 Finding unique features of communities
  Once the different communities contained in the data have been identified, following the procedure explained in the previous section, one finds which features are special in each community. To do so, one computes the coordinates that best explain a set of nodes compared to the rest of the nodes with a Kolmogorov-Smirnov (KS) test. For each community, all the features in the dataset are considered in the KS test.
  
- If $\vec{V}$ denotes the row vector of each patient, then the coordinates of each row vector are given by: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature (column) and $s$ is the total number of features/columns in the dataset. If one assumes that $C_1$,$C_2$,..., and $C_t$ are communities, then each represents a different topological feature of the Mapper complex. 
+ If $\vec{V}$ denotes the row vector of each patient, then the coordinates of each row vector are given by: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature (column) and $s$ is the total number of features/columns in the dataset. If one assumes that $C_1$, $C_2$ ,..., and $C_t$ are communities, then each represents a different topological feature of the Mapper complex. 
 
 Suppose we want to find traits that uniquely define $C_1$. We write 
 
@@ -194,10 +194,10 @@ The pseudo-code of how to find unique features of $C_1$ is written below:
 <img width="569" alt="Screenshot 2023-07-06 at 13 58 26" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/502841b1-f14a-450b-9c14-1a34c26b6406">
 
 
-In this algorithm, $KS$ denotes the Kolmogorov-Smirnov test.  I used the two-sample Kolmogorov-Smirnov test from the Scipy-stats library~\cite{ks_2sample} to test the importance of a feature. The above algorithm is done for each community <$C_1$, $C_2$, ..., $C_t$>. In the end, I calculated statistically important features for each community (with $p$-value less than $0.05$).
+In this algorithm, $KS$ denotes the Kolmogorov-Smirnov test.  I used the two-sample Kolmogorov-Smirnov test from the [Scipy-stats library](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ks_2samp.html) to test the importance of a feature. The above algorithm is done for each community < $C_1$ , $C_2$ , ..., $C_t$ >. In the end, I calculated statistically important features for each community (with $p$-value less than $0.05$).
  
-\section{Results}
-Each community in the Mapper complex represents a different group in the data. There are four different communities detected by Mapper which are shown in Fig.~\ref{communities}. We see three different groups composed of female patients only and one group of only male patients. The genders among communities are heterogeneous since the gender column is used as the first filter function for Mapper. Female groups are named as F$_1$ ($n=205$), F$_2$ ($n=204$), F$_3$ ($n=77$) and the male group is called M$_1$ ($n=205$). We have analyzed the cognitive, emotional, and motor skills in each group, and identified which features make these groups different. Clinical features specific to groups are listed below where $p$-values are in ascending order from top to bottom i.e. first row in the tables is the most representative feature of that community.
+# 5. Results
+Each community in the Mapper complex represents a different group in the data. There are four different communities detected by Mapper which are shown in Fig.8. We see three different groups composed of female patients only and one group of only male patients. The genders among communities are heterogeneous since the gender column is used as the first filter function for Mapper. Female groups are named as $F_1$ (n=205), $F_2$ (n=204), $F_3$ (n=77) and the male group is called $M_1$ (n=205). We have analyzed the cognitive, emotional, and motor skills in each group, and identified which features make these groups different. Clinical features specific to groups are listed below where $p$-values are in ascending order from top to bottom i.e. first row in the tables is the most representative feature of that community.
 %
 \begin{table}[!h]
     \begin{tabular}{l l l l l l l} 
