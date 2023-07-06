@@ -18,10 +18,10 @@ More details of the Mapper algorithm, methodology and results can be found below
 
 
 
-# 1.1 What is Topological Data Analysis (TDA)?
+## 1.1 What is Topological Data Analysis (TDA)?
 Data gathering and analyses become a fundamental power in all research communities such as medicine, engineering, social sciences, economy, and mathematics, to name but a few. The amount of data gathered from different areas grows at a gigantic rate therefore it is essential to find a scientific method to analyse them and extract from them meaningful knowledge. Understanding the \textit{shape of data} brings us to topology, which is a branch of mathematics. Topology is the field of mathematics that studies how space is ``connected". It was first studied by the Swiss mathematician [Leonhard Euler](https://www.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem) in the 18th century. Over the last 20 years, topological techniques have been used in various applied problems, one of these fields is called Topological Data Analysis (TDA). TDA provides detailed information about the characteristics of the data by providing some topological, statistical, and geometrical methods to infer complex topological structures such as connected components, holes, branches, or loops. This analysis method is very robust to outliers and noise where the data is usually represented as point clouds or distance matrices in a Euclidean metric space.
 
-# 1.2 Applications of Topological Data Analysis in Data Science
+## 1.2 Applications of Topological Data Analysis in Data Science
 There have been many promising results in recent years for applying topological and
 geometric approaches in various research fields. TDA was used in [material sciences](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.87.042207), [shape analysis of 3D objects](https://www.arxiv-vanity.com/papers/1905.12200/), [analysis of images in various domains](https://papers.nips.cc/paper/2020/hash/4d771504ddcd28037b4199740df767e6-Abstract.html), [time series analysis](https://www.firaskhasawneh.com/assets/files/publications/Khasawneh2016.pdf), [medicine](https://inria.hal.science/hal-02155849), [biology](https://link.springer.com/chapter/10.1007/978-3-030-47358-7_17),  [genomic data](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.80.034502), or [chemistry](https://www.nature.com/articles/ncomms15396). Topological approaches and how to use them in interdisciplinary research topics and data science is currently a very active research domain.
 
@@ -56,50 +56,36 @@ Episodic memory(Picture Sequence Memory), Executive function: Cognitive flexibil
 
   
 
-# 2.1 Preprocessing
-Most of the features in the dataset have scalar data types. Only connectivity matrices of brain scans have graph-type data and some personal information (gender and age) is of string type. The Sklearn categorical encoders~\cite{sklearn_ce} was used to convert string type to scalar. 
+## 2.1 Preprocessing
+Most of the features in the dataset have scalar data types. Only connectivity matrices of brain scans have graph-type data and some personal information (gender and age) is of string type. [The Sklearn categorical encoders](https://contrib.scikit-learn.org/category_encoders/) was used to convert string type to scalar. 
 
-\subsubsection{Diffusion Tensor Image (Connectivity matrices)}
+### Diffusion Tensor Image (Connectivity matrices)
 In the dataset, there are brain scans for each patient in the form of diffusion tensor images (DTI). DTI is a popular brain imaging technique that measures the white matter of the brain i.e. the diffusion of water molecules. The DT images were converted to connectivity matrices for each patient. 
 
-The shape of one connectivity matrix is (116, 116) meaning that there are 116 brain regions. The rows and columns represent brain regions, and the values represent interactions-number of fibers in DTI-  between different regions. An example of a connectivity matrix is shown in Fig.~\ref{conn_matrix} below.
-%
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=13cm]{img/brainRegionsSmall.png}
-  \caption{\textit{An example of a connectivity matrix of a patient in shape (116, 116). Rows and columns represent brain regions.}}
-  \label{conn_matrix}
-\end{figure}
-%
+The shape of one connectivity matrix is (116, 116) meaning that there are 116 brain regions. The rows and columns represent brain regions, and the values represent interactions-number of fibers in DTI-  between different regions. An example of a connectivity matrix is shown in Fig.1 below.
+
+<img width="566" alt="Screenshot 2023-07-06 at 13 38 13" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/4ff14a14-393e-4ecd-9fb5-058bfba8e670">
 
  There are several ways to extract information from connectivity matrices such as: (i) flattening the matrices and using dimension reduction methods such as, e.g., principal component analysis (PCA) or singular value decomposition (SVD), (ii) using graph metrics since a connectivity matrix can be represented as a graph(density, degree/strength, centrality, etc), (iii) using topological feature extraction methods. Since this research includes topological data analysis, the third method will be selected to extract features. 
 
-A topological feature can be a connected component, a community hole/loop, a 2D cavity, or more generally a d-dimensional “void”. These features are based on the shape of the data. Firstly, the connectivity matrices are converted to Networkx graphs, then to persistence diagrams via a persistence complex. There are five complexes in the giotto-tda~\cite{giotto-tda} library such as \emph{Vietoris-Rips, Weighted-Rips, Sparse-Rips, Weak-Alpha, and Euclidean-\v{C}ech persistence.} Since we have weighted, undirected, and sparse graphs, Sparse-Rips persistence~\cite{SparseRipsPersistence}  was the most suitable one. After the complex computation, the graphs turn into persistence diagrams. There is one persistence diagram for each patient in the dataset calculated from the Sparse-Rips complex.
-%
-\begin{figure}[!t]
-  \centering
-  \includegraphics[width=8cm]{img/pers_diagg.png}
-  \caption{\textit{An example of a persistence diagram as an output of Sparse-Rips complex. The red points are the topological features in dimension 0, and the green points are the topological features in dimension 1. The diagram belongs to one of the patients in the dataset. } }
-  \label{pers_diag}
-\end{figure} 
-%
-Persistence diagrams are representations of topological features. Each point is a topological feature that appears between a birth and a death scale in the diagram. A point's distance from the diagonal visually represents how “persistent” the associated topological feature is. In Fig.~\ref{pers_diag} topological features are shown using different colors. In dimension 0, the features are represented in red, and in dimension 1 they are represented in green. In dimension 0, the diagram illustrates the connectivity structure of the graph. In dimension 1, it illustrates the independent one-dimensional holes.\\
-From the persistence diagrams, we can extract scalar topological features using \emph{the Persistence Entropy} transformer~\cite{PersistenceEntropy} in the giotto-tda library. After this translation, two scalar topological features were obtained(in dimensions 0 and 1) and added to the dataset.
+A topological feature can be a connected component, a community hole/loop, a 2D cavity, or more generally a d-dimensional “void”. These features are based on the shape of the data. Firstly, the connectivity matrices are converted to Networkx graphs, then to persistence diagrams via a persistence complex. There are five complexes in [the giotto-tda](https://giotto-ai.github.io/gtda-docs/0.5.1/library.html) library such as Vietoris-Rips, Weighted-Rips, Sparse-Rips, Weak-Alpha, and Euclidean-Cech persistence. Since we have weighted, undirected, and sparse graphs, [Sparse-Rips persistence](https://giotto-ai.github.io/gtda-docs/latest/modules/generated/homology/gtda.homology.SparseRipsPersistence.html) was the most suitable one. After the complex computation, the graphs turn into persistence diagrams. There is one persistence diagram for each patient in the dataset calculated from the Sparse-Rips complex.
 
-In the end, the final dataset contains features including the sex, and gender of the patients, as well as cognitive, emotional, and motor test scores and scalar topological connectivity matrix features. The final shape of the dataset is (998,29) which is shown in Fig.~\ref{dataset_final}.
-%
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=16cm]{img/dataset_final.png}
-  \caption{\textit{The final dataset with shape (998,29).}}
-  \label{dataset_final}
-\end{figure} 
-%
+Persistence diagrams are representations of topological features. Each point is a topological feature that appears between a birth and a death scale in the diagram. A point's distance from the diagonal visually represents how “persistent” the associated topological feature is. In Fig.2 topological features are shown using different colors. 
+
+<img width="575" alt="Screenshot 2023-07-06 at 13 39 46" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/9d372ba6-4b19-4b32-9efa-68da12071c2b">
 
 
-\section{The Mapper Algorithm}
-%\chapter{Mapper Algorithm}
-Mapper is a computational method for complex datasets to extract the simplest information in the form of simplicial complexes that conserve the underlying topological structures from the original data. It was first implemented in 2007~\cite{singh2007topological}, and since then it has become a popular visualization tool in topological data analysis. It is used for the visualization of high-dimensional datasets, simplification, and qualitative analysis. The idea is to partially cluster the data that is guided by scalar filter functions. The resulting visualization is a simple collapse of data into a low-dimensional graph, where the filter function (\textit{lens}) acts as guidance. The Mapper algorithm is used from GUDHI library~\cite{gudhi}.
+In dimension 0, the features are represented in red, and in dimension 1 they are represented in green. In dimension 0, the diagram illustrates the connectivity structure of the graph. In dimension 1, it illustrates the independent one-dimensional holes.
+From the persistence diagrams, we can extract scalar topological features using [the Persistence Entropy transformer](https://giotto-ai.github.io/gtda-docs/latest/modules/generated/diagrams/features/gtda.diagrams.PersistenceEntropy.html) in the giotto-tda library. After this translation, two scalar topological features were obtained(in dimensions 0 and 1) and added to the dataset.
+
+In the end, the final dataset contains features including the sex, and gender of the patients, as well as cognitive, emotional, and motor test scores and scalar topological connectivity matrix features. The final shape of the dataset is (998,29) which is shown in Fig.3.
+
+<img width="567" alt="Screenshot 2023-07-06 at 13 41 09" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/a7a76cea-a74d-4de6-8596-45e1bfa747f4">
+
+
+# 3. The Mapper Algorithm
+
+Mapper is a computational method for complex datasets to extract the simplest information in the form of simplicial complexes that conserve the underlying topological structures from the original data. [It was first implemented in 2007]~\cite{singh2007topological}, and since then it has become a popular visualization tool in topological data analysis. It is used for the visualization of high-dimensional datasets, simplification, and qualitative analysis. The idea is to partially cluster the data that is guided by scalar filter functions. The resulting visualization is a simple collapse of data into a low-dimensional graph, where the filter function (\textit{lens}) acts as guidance. The Mapper algorithm is used from GUDHI library~\cite{gudhi}.
 
 The Mapper has various steps, which can be seen in Fig.~\ref{mapper} and that are explained in the following sections.\\
 % 
