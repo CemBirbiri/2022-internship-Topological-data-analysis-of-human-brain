@@ -26,37 +26,37 @@ There have been many promising results in recent years for applying topological 
 geometric approaches in various research fields. TDA was used in [material sciences](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.87.042207), [shape analysis of 3D objects](https://www.arxiv-vanity.com/papers/1905.12200/), [analysis of images in various domains](https://papers.nips.cc/paper/2020/hash/4d771504ddcd28037b4199740df767e6-Abstract.html), [time series analysis](https://www.firaskhasawneh.com/assets/files/publications/Khasawneh2016.pdf), [medicine](https://inria.hal.science/hal-02155849), [biology](https://link.springer.com/chapter/10.1007/978-3-030-47358-7_17),  [genomic data](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.80.034502), or [chemistry](https://www.nature.com/articles/ncomms15396). Topological approaches and how to use them in interdisciplinary research topics and data science is currently a very active research domain.
 
 
-One of the methods in topological analysis of complex data is the \textit{Mapper algorithm}. The Mapper algorithm uses some metrics and lenses to convert data into a topological network where nodes represent similar data points and edges represent topological relations. It is used for the visualization of high-dimensional data and for clustering the data points to extract similarities between subgroups.
+One of the methods in topological analysis of complex data is the Mapper algorithm. The Mapper algorithm uses some metrics and lenses to convert data into a topological network where nodes represent similar data points and edges represent topological relations. It is used for the visualization of high-dimensional data and for clustering the data points to extract similarities between subgroups.
 
-The Mapper algorithm is applied to the data that were obtained from the UCLA multi-modal connectivity database~\cite{dataset_info1}. This dataset has many features of the human brain such as cognitive behavior, motor skills, or brain images of patients. The goal was to apply Mapper to this complex dataset to (i) visualize, (ii) find similarities between data points to extract different communities, and (iii) understand what features make these communities unique. The outcome of the Mapper algorithm gives a graph that one can visualize in 2D or 3D. After achieving the Mapper result, the Kolmogorov-Smirnov (KS) test was applied to find unique communities with their features in the topological network. The overall TDA pipeline can be described through the following steps:
-%
-\begin{enumerate}
-  \item Preprocessing of the data.
-  \item Applying the Mapper algorithm and extracting the low-dimensional shape of data points, called the mapper complex.
-  \item Detecting different subgroups from the result of Mapper.
-  \item Discovering what features make these communities unique.
-\end{enumerate}
-%
+The Mapper algorithm is applied to the data that were obtained from the [The Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease). This dataset has many features of the human brain such as cognitive behavior, motor skills, or brain images of patients. The goal was to apply Mapper to this complex dataset to (i) visualize, (ii) find similarities between data points to extract different communities, and (iii) understand what features make these communities unique. The outcome of the Mapper algorithm gives a graph that one can visualize in 2D or 3D. After achieving the Mapper result, the Kolmogorov-Smirnov (KS) test was applied to find unique communities with their features in the topological network. The overall TDA pipeline can be described through the following steps:
+
+-  Preprocessing of the data.
+-  Applying the Mapper algorithm and extracting the low-dimensional shape of data points, called the mapper complex.
+-  Detecting different subgroups from the result of Mapper.
+-  Discovering what features make these communities unique.
+
 The following sections include details about the dataset, methodology, and results.
 
 
 
-%\chapter{Dataset and Preprocessing}
-\section{Dataset and Preprocessing}
+# 2. Dataset and Preprocessing
 
-The dataset belongs to the NIH Human Connectome Project (HCP) released in 2009 in the Blueprint Grand Challenge~\cite{dataset_info1}. The purpose of the Human Connectome Project is to discover the structure of the human brain and its functional connectivity. It brings many advances in neuroscience research by shedding new light onto key questions such as: how the brain circuitry changes as humans age, how it changes from the psychiatric and neurological standpoints, and how the electrical signals generate thought, feelings, or human behavior. To date, there have been over 100 publications that use HCP data since the first publicly available release~\cite{dataset_info2}. Overall, HCP data helps us to discover what makes humans unique and leads to great advances in the understanding of the human brain\, in particular in link with neurological and psychiatric disorders.
+
+The dataset belongs to the [NIH Human Connectome Project (HCP)](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) released in 2009 in the Blueprint Grand Challenge. The purpose of the Human Connectome Project is to discover the structure of the human brain and its functional connectivity. It brings many advances in neuroscience research by shedding new light onto key questions such as: how the brain circuitry changes as humans age, how it changes from the psychiatric and neurological standpoints, and how the electrical signals generate thought, feelings, or human behavior. To date, there have been over 100 publications that use HCP data since the first publicly available release. Overall, HCP data helps us to discover what makes humans unique and leads to great advances in the understanding of the human brain\, in particular in link with neurological and psychiatric disorders.
 
 The dataset includes 998 patients with various features such as brain scans (diffusion tensor images), personal information (family history, personality, age, gender, etc.), cognitive behavior, motor skills, emotion, sensory (vision, taste, pain, audition, olfaction) and clinical brain characteristics such as gray matter volume, surface area, thickness, etc. 
-%
-\begin{itemize}
-\item[$\bullet$] \textbf{Diffusion Tensor Image (Connectivity matrices)}
-\item[$\bullet$] \textbf{Personal information:} Age and gender
-\item[$\bullet$] \textbf{Cognitive features:} Episodic memory(Picture Sequence Memory), Executive function: Cognitive flexibility(Dimensional Change Card Sort) and inhibition (Flanker Task), Fluid Intelligence(Penn Progressive Matrices), Language/Reading Decoding (Oral Reading Recognition), Language/Vocabulary Comprehension (Picture Vocabulary), Processing Speed (Pattern Completion Processing Speed), Self-regulation/Impulsivity (Delay Discounting), Spatial Orientation (Variable Short Penn Line Orientation Test), Sustained Attention (Short Penn Continuous Performance Test), Verbal Episodic Memory (Penn Word Memory Test), Working Memory (List Sorting)
-\item[$\bullet$] \textbf{Emotion:} Emotion recognition(Penn Emotion Recognition Test), negative affect, psychological well-being, social relationships, stress, and self-efficacy
-\item[$\bullet$] \textbf{Motor:} Endurance(2-minute walk test), locomotion (4-meter walk test), dexterity (9-hole Pegboard), strength (Grip Strength Dynamometry)
-\end{itemize}
-%
-\subsection{Preprocessing}
+- Diffusion Tensor Image (Connectivity matrices)}
+- Personal information: Age and gender
+- Cognitive features:
+
+Episodic memory(Picture Sequence Memory), Executive function: Cognitive flexibility(Dimensional Change Card Sort) and inhibition (Flanker Task), Fluid Intelligence(Penn Progressive Matrices), Language/Reading Decoding (Oral Reading Recognition), Language/Vocabulary Comprehension (Picture Vocabulary), Processing Speed (Pattern Completion Processing Speed), Self-regulation/Impulsivity (Delay Discounting), Spatial Orientation (Variable Short Penn Line Orientation Test), Sustained Attention (Short Penn Continuous Performance Test), Verbal Episodic Memory (Penn Word Memory Test), Working Memory (List Sorting)
+
+- Emotion: Emotion recognition(Penn Emotion Recognition Test), negative affect, psychological well-being, social relationships, stress, and self-efficacy
+- Motor: Endurance(2-minute walk test), locomotion (4-meter walk test), dexterity (9-hole Pegboard), strength (Grip Strength Dynamometry)
+
+  
+
+# 2.1 Preprocessing
 Most of the features in the dataset have scalar data types. Only connectivity matrices of brain scans have graph-type data and some personal information (gender and age) is of string type. The Sklearn categorical encoders~\cite{sklearn_ce} was used to convert string type to scalar. 
 
 \subsubsection{Diffusion Tensor Image (Connectivity matrices)}
