@@ -85,35 +85,24 @@ In the end, the final dataset contains features including the sex, and gender of
 
 # 3. The Mapper Algorithm
 
-Mapper is a computational method for complex datasets to extract the simplest information in the form of simplicial complexes that conserve the underlying topological structures from the original data. [It was first implemented in 2007]~\cite{singh2007topological}, and since then it has become a popular visualization tool in topological data analysis. It is used for the visualization of high-dimensional datasets, simplification, and qualitative analysis. The idea is to partially cluster the data that is guided by scalar filter functions. The resulting visualization is a simple collapse of data into a low-dimensional graph, where the filter function (\textit{lens}) acts as guidance. The Mapper algorithm is used from GUDHI library~\cite{gudhi}.
+Mapper is a computational method for complex datasets to extract the simplest information in the form of simplicial complexes that conserve the underlying topological structures from the original data. [It was first implemented in 2007](https://diglib.eg.org/handle/10.2312/SPBG.SPBG07.091-100), and since then it has become a popular visualization tool in topological data analysis. It is used for the visualization of high-dimensional datasets, simplification, and qualitative analysis. The idea is to partially cluster the data that is guided by scalar filter functions. The resulting visualization is a simple collapse of data into a low-dimensional graph, where the filter function (lens) acts as guidance. The Mapper algorithm is used from [the GUDHI library](https://gudhi.inria.fr/).
 
-The Mapper has various steps, which can be seen in Fig.~\ref{mapper} and that are explained in the following sections.\\
-% 
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=10cm]{img/mapper_steps.png}
-  \caption{\textit{A visualization of the Mapper algorithm. The chosen filter is the $y$-axis. The image is taken from~\cite{mapperimage}.}}
-  \label{mapper}
-\end{figure}
-%
- 
- \subsection{Selecting the filter function}
+The Mapper has various steps, which can be seen in Fig.4 and that are explained in the following sections.\\
+
+ <img width="528" alt="Screenshot 2023-07-06 at 13 43 52" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/be09b963-0e57-4aba-8313-6f217ce282b7">
+
+## 3.1 Selecting the filter function
  The key idea of the Mapper algorithm is to map data points into a metric space using some filters defined on data points while capturing topological and geometric information at a specified resolution and gain. The filter function (also called a lens) is the metric that allows us to map our data points. It should be a scalar vector whose size equals the number of data points in the dataset. For example, in our case, the shape of the final dataset is (998,29), so the size of one filter function must be (998,1). Filter functions are calculated based on the dataset. Each entry in a filter vector represents the cover of an individual data point. Each row in a dataset is converted to a single number, i.e., each row provides a real number in the filter vector.
-%
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=10cm]{img/different_filters.png}
-  \caption{\textit{Three different lenses(filters) on the same point cloud data. The rows show the horizontal, vertical, and radial filter selection results, respectively.} }
-  \label{diff_lenses}
-\end{figure}
-%
- 
 
  Filter selection is a key point of the Mapper algorithm. In Fig.~\ref{diff_lenses}, three different filters are applied to the same point cloud data such as vertical, horizontal, and radial filters. Although the point cloud, in this case,  is small with only 2 dimensions, this is a good example of how filters could change the Mapper result. Filter choice depends on the data, the complexity of the data, and the goal of the Mapper user. A different filter function
-will generate a graph with a different shape, thus filters allow one to explore the data from different mathematical perspectives. Here is a list of filter functions that I used in my internship work:
-% 
-\begin{itemize}
-\item[$\bullet$] \textbf{A column of the dataset:} If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
+will generate a graph with a different shape, thus filters allow one to explore the data from different mathematical perspectives. 
+
+ <img width="572" alt="Screenshot 2023-07-06 at 13 44 33" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/19668dbb-aae3-454f-beec-3a2f225b3fab">
+
+
+Here is a list of filter functions that I used in my internship work:
+- **A column of the dataset**
+   If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
 
 \item[$\bullet$] \textbf{$\boldsymbol{L_p}$ Norm:} The filter function can be chosen based on the $L_p$ norm for each data point. Below, $f_{p,k}$ represents the filter function, $\vec{V}$ denotes the coordinates of each row vector: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature(column) and $s$ is total number of features in the dataset. The $L_p$ norm of an individual patient can be calculated as follows:
 %
