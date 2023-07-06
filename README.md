@@ -198,103 +198,45 @@ In this algorithm, $KS$ denotes the Kolmogorov-Smirnov test.  I used the two-sam
  
 # 5. Results
 Each community in the Mapper complex represents a different group in the data. There are four different communities detected by Mapper which are shown in Fig.8. We see three different groups composed of female patients only and one group of only male patients. The genders among communities are heterogeneous since the gender column is used as the first filter function for Mapper. Female groups are named as $F_1$ (n=205), $F_2$ (n=204), $F_3$ (n=77) and the male group is called $M_1$ (n=205). We have analyzed the cognitive, emotional, and motor skills in each group, and identified which features make these groups different. Clinical features specific to groups are listed below where $p$-values are in ascending order from top to bottom i.e. first row in the tables is the most representative feature of that community.
-%
-\begin{table}[!h]
-    \begin{tabular}{l l l l l l l} 
-        \hline
-         \multicolumn{1}{c}{\textbf{Clinical features}} & \textbf{Category} & \textbf{$\mathbf{p}$-value} & \textbf{F}$_{\mathbf{1}}$  & \textbf{M}$_{\mathbf{1}}$ & \textbf{F}$_{\mathbf{2}}$ & \textbf{F}$_{\mathbf{3}}$ \\ 
-        Gender   & Other & < 0.05 & \checkmark & \checkmark & \checkmark & \checkmark\\
-        Strength (Grip Strength Dynamometry) & Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Language/Vocabulary Comprehension& Cognition & < 0.05& \bluecheck& & &\\ 
-        Dexterity (9-hole Pegboard) & Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Endurance(2 minute walk test) & Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Spatial Orientation & Cognition & 0.001& \checkmark&\checkmark & &\\ 
-        Fluid Intelligence & Cognition & 0.002& \bluecheck& & &\\ 
-        Episodic Memory& Cognition & 0.003& \checkmark&\checkmark &\checkmark &\checkmark\\Stress and Self Efficacy& Cognition & 0.005& \checkmark&\checkmark & &\checkmark\\ 
-        Language/Reading Decoding & Cognition & 0.006& \bluecheck& & &\\
-        Social Relationships - Loneliness & Emotion & 0.008& \checkmark& \checkmark& &\\
-        Processing Speed& Cognition & 0.019& \checkmark& \checkmark& \checkmark&\\
-        Sustained Attention& Cognition & 0.035& \checkmark& & \checkmark&\\
-        \hline
-    \end{tabular}
-    \caption{\textbf{(A) Clinical features for F$_{\mathbf{1}}$ ($\boldsymbol{n=205}$, only women)}. Three features are specific and appeared only in this subgroup: (i) Language/vocabulary comprehension, (ii) fluid intelligence, and (iii) language/reading decoding.}
-\end{table}
-%
-\paragraph{\fbox{Group F$_{\boldsymbol{1}}$}}
-Three variables are specific to this group: (i) Language/vocabulary comprehension, (ii) fluid intelligence, and (iii) language/reading decoding. Language/vocabulary comprehension tests the ability of a person to correctly match words with images. In the test, an audio record of a word is given to the person and she/he picks an image out of four images that are most related to the word. The mean value for participants in F$_1$ in this test is $105.52$. Other groups' average scores are $108.86$, $106.01$, and $105.39$\, respectively. The mean values are similar but this feature becomes a discriminative property for F$_1$.\\
-Fluid intelligence aims to capture how successful a given person is at thinking and finding reasons in an abstract way and solving problems. This female group was found to be better in this test compared to other patients. Language/reading decoding measures the ability of the patient to accurately read and pronounce the words in both English and Spanish. The F$_1$ group has a disjunctive characteristic of this feature with a mean value of $105.5$. No feature only defines female groups but not males.\\
-
-\begin{table}[!h]
-    \begin{tabular}{l l l l l l l} 
-        \hline
-        \multicolumn{1}{c}{\textbf{Clinical features}} & \textbf{Category} & \textbf{$\mathbf{p}$-value} & \textbf{F}$_{\mathbf{1}}$  & \textbf{M}$_{\mathbf{1}}$ & \textbf{F}$_{\mathbf{2}}$ & \textbf{F}$_{\mathbf{3}}$ \\ 
-        Gender   & Other & < 0.05 & \checkmark & \checkmark & \checkmark & \checkmark\\
-        Strength (Grip Strength Dynamometry)& Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\
-        Dexterity (9-hole Pegboard) & Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Endurance (2 minute walk test)& Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Stress and Self Efficacy& Emotion & < 0.05 & \checkmark&\checkmark & &\checkmark\\
-        Episodic Memory& Cognition & < 0.05 & \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Negative Affect - Sadness& Emotion & 0.005 & &\bluecheck & &\\
-        Spatial Orientation& Cognition & 0.001 & \checkmark&\checkmark & &\\ 
-        Processing Speed& Cognition & 0.006 & \checkmark&\checkmark & \checkmark&\\ 
-        Social Relationships -Loneliness& Emotion & 0.013 & & \bluecheck& &\\
-        Verbal Episodic Memory & Cognition & 0.013 & & \checkmark&\checkmark &\\
-         \hline
-    \end{tabular}
-    \caption{\textbf{(B) Clinical features for M$_{\mathbf{1}}$ ($\boldsymbol{n=205}$, only men)}. Three features are specific and appeared only in this subgroup: Negative Affect - Sadness  and Social Relationships -Loneliness}
-\end{table}
-%
-
-\paragraph{\fbox{Group M$_{\boldsymbol{1}}$}}
-Interestingly, we have one male group in the resulting communities. Men in this group are linked with two specific emotional categories: Sadness and loneliness. These features do not appear in female groups. Surprisingly, men in the dataset seem to have issues with sadness and loneliness. It makes sense that loneliness appears with sadness because they are related emotions. Patients in M$_1$ share the verbal episodic memory with patients in F$_2$, and spatial orientation feature with patients in F$_1$. \\
 
 
 
-\begin{table}[!b]
-    \begin{tabular}{l l l l l l l} 
-       \hline
-       \multicolumn{1}{c}{\textbf{Clinical features}} & \textbf{Category} & \textbf{$\mathbf{p}$-value} & \textbf{F}$_{\mathbf{1}}$  & \textbf{M}$_{\mathbf{1}}$ & \textbf{F}$_{\mathbf{2}}$ & \textbf{F}$_{\mathbf{3}}$ \\ Strength (Grip Strength Dynamometry)& Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\
-        Gender   & Other & < 0.05 & \checkmark & \checkmark & \checkmark & \checkmark\\
-        Endurance (2 minute walk test)& Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Episodic Memory& Cognition & < 0.05 & \checkmark&\checkmark &\checkmark &\checkmark\\
-        Executive Function/ Inhibition& Cognition & 0.004 & & &\bluecheck&\\
-        Verbal Episodic Memory & Cognition & 0.014 & & \checkmark&\checkmark &\\
-        Processing Speed& Cognition & 0.032 & \checkmark&\checkmark & \checkmark&\\
-        Negative Affect - Anger& Emotion & 0.037 & & & \bluecheck &\\
-        Dexterity (9-hole Pegboard) & Motor & 0.042& \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Sustained Attention& Cognition & 0.046 & \checkmark&\checkmark &\checkmark &\checkmark\\
-         \hline
-   \end{tabular}
-   \caption{\textbf{(C) Clinical features for F$_{\boldsymbol{2}}$ ($\boldsymbol{n=205}$, only women). There are two unique features in this community: Executive Function/ Inhibition and Negative Affect - Anger.}}
-\end{table}
-%
-\paragraph{\fbox{Group F$_{\boldsymbol{2}}$}}
-This female group is detected by the variables ``Negative Affect-Anger'' and "Executive Function/ Inhibition". Anger is described as the attitude of a person about cynicism, hostility, and frustrating experiences. People in F$_2$ are linked to anger problems. The other feature that is specific to F$_2$ is ``executive function/inhibition''. Participants' attention and inhibitory control are tested. Our results indicate that the F$_2$ group is characterized by attention skills.\\
+
+<img width="489" alt="Screenshot 2023-07-06 at 14 09 15" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/85b149e1-47e1-4392-9b61-d0df54360b59">
 
 
-%
-\begin{table}[!ht]
-    \begin{tabular}{l l l l l l l} 
-        \hline
-        \multicolumn{1}{c}{\textbf{Clinical features}} & \textbf{Category} & \textbf{$\mathbf{p}$-value} & \textbf{F}$_{\mathbf{1}}$  & \textbf{M}$_{\mathbf{1}}$ & \textbf{F}$_{\mathbf{2}}$ & \textbf{F}$_{\mathbf{3}}$ \\ 
-        Gender   & Other & < 0.05 & \checkmark & \checkmark & \checkmark & \checkmark\\
-        Strength (Grip Strength Dynamometry)& Motor & < 0.05& \checkmark&\checkmark &\checkmark &\checkmark\\
-        Episodic Memory& Cognition & < 0.05 & \checkmark&\checkmark &\checkmark &\checkmark\\
-        Dexterity (9-hole Pegboard) & Motor & 0.002 & \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Endurance (2 minute walk test)& Motor & 0.003 & \checkmark&\checkmark &\checkmark &\checkmark\\ 
-        Stress and Self Efficacy& Emotion & 0.023 & \checkmark&\checkmark & &\checkmark\\
-         \hline
-    \end{tabular}
-    \caption{\textbf{(D) Clinical features for F$_{\boldsymbol{3}}$ ($\boldsymbol{n=77}$, only women). No unique feature for this subgroup.}}
-\end{table}
 
 
-\paragraph{\fbox{Group F$_{\boldsymbol{3}}$}}
-This group has no specific feature that only belongs to itself. Besides the common features of the four groups, F$_3$ is linked to stress and self-efficacy. However, this variable is also shared by F$_1$ and M$_1$. I interpreted this group as an average female group for which there is no diverse trait.\\
-\\
+#### Group $F_1$
+Three variables are specific to this group: (i) Language/vocabulary comprehension, (ii) fluid intelligence, and (iii) language/reading decoding. Language/vocabulary comprehension tests the ability of a person to correctly match words with images. In the test, an audio record of a word is given to the person and she/he picks an image out of four images that are most related to the word. The mean value for participants in $F_1$ in this test is $105.52$. Other groups' average scores are $108.86$, $106.01$, and $105.39$, respectively. The mean values are similar but this feature becomes a discriminative property for $F_1$.
 
-%
-Among the four groups, gender and strength (grip strength dynamometry) are the first two common features that define these communities with the smallest $p$-values ($<0.05$). The grip strength dynamometry test is adopted from the \textit{American Society of Hand Therapy}, where the participants sit on a chair, bend their elbows at $90$ degrees, and are asked to squeeze to dynamometer as hard as they can with their right and left hands. The result of the test provides a digital score of force in pounds. This motor skill shows how strong the person is. The average value of strength in the women groups is $92.31$, $87.54$, and $84.23$ in F$_1$, F$_2$ and F$_3$, respectively. The average strength in the male group is larger than in the female groups, with a value of $122.28$. In general, physical power is greater in men than women, which is why strength became a key feature to represent these groups.
+Fluid intelligence aims to capture how successful a given person is at thinking and finding reasons in an abstract way and solving problems. This female group was found to be better in this test compared to other patients. Language/reading decoding measures the ability of the patient to accurately read and pronounce the words in both English and Spanish. The $F_1$ group has a disjunctive characteristic of this feature with a mean value of $105.5$. No feature only defines female groups but not males.
+
+
+<img width="499" alt="Screenshot 2023-07-06 at 14 11 01" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/c4043e0c-27f4-4e94-9e14-d8bd50d7663b">
+
+
+
+#### Group $M_1$
+Interestingly, we have one male group in the resulting communities. Men in this group are linked with two specific emotional categories: Sadness and loneliness. These features do not appear in female groups. Surprisingly, men in the dataset seem to have issues with sadness and loneliness. It makes sense that loneliness appears with sadness because they are related emotions. Patients in $M_1$ share the verbal episodic memory with patients in $F_2$, and spatial orientation feature with patients in $F_1$.
+
+
+
+<img width="487" alt="Screenshot 2023-07-06 at 14 11 43" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/3b245e1d-3349-4313-8a71-9faf0fdcd615">
+
+
+#### Group $F_2$
+This female group is detected by the variables "Negative Affect-Anger" and "Executive Function/ Inhibition". Anger is described as the attitude of a person about cynicism, hostility, and frustrating experiences. People in $F_2$ are linked to anger problems. The other feature that is specific to $F_2$ is "executive function/inhibition". Participants' attention and inhibitory control are tested. Our results indicate that the $F_2$ group is characterized by attention skills.
+
+<img width="494" alt="Screenshot 2023-07-06 at 14 13 22" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/393d9b38-315f-49ac-aab6-7316b9e27d1a">
+
+
+
+
+#### Group $F_3$
+This group has no specific feature that only belongs to itself. Besides the common features of the four groups, $F_3$ is linked to stress and self-efficacy. However, this variable is also shared by $F_1$ and $M_1$. I interpreted this group as an average female group for which there is no diverse trait.
+
+Among the four groups, gender and strength (grip strength dynamometry) are the first two common features that define these communities with the smallest $p$-values ($<0.05$). The grip strength dynamometry test is adopted from the American Society of Hand Therapy, where the participants sit on a chair, bend their elbows at $90$ degrees, and are asked to squeeze to dynamometer as hard as they can with their right and left hands. The result of the test provides a digital score of force in pounds. This motor skill shows how strong the person is. The average value of strength in the women groups is $92.31$, $87.54$, and $84.23$ in $F_1$, $F_2$ and $F_3$, respectively. The average strength in the male group is larger than in the female groups, with a value of $122.28$. In general, physical power is greater in men than women, which is why strength became a key feature to represent these groups.
 
 There are also three other features shared by all of the groups, namely dexterity (9-hole Pegboard), endurance (2 minutes walk test), and episodic memory. Dexterity is a test where participants are asked to put and remove 9 plastic pegs into a pegboard with each hand. The score is the time taken by the participants (3-85 years old) to finish the task. An endurance test is used to test the sub-maximal cardiovascular endurance. Participants walk a 50-foot long lane (back and forth) in 2 minutes and the score is the distance they were able to achieve. On the other hand, episodic memory measures how well one can remember previous experiences within the context of location, time, or emotions. Participants are asked to recall the sequence of objects that are in a specific order shown on the computer screen. If they can remember correctly the order of two objects they get one point. All these three tests resulted to be common features to represent the four groups. Here, it is normal to have common features among groups, yet the important part of TDA analysis is to find specific characteristics that are not shared.
 
@@ -306,37 +248,8 @@ There are also three other features shared by all of the groups, namely dexterit
 
 
 
-\SpecialSection{Conclusion}
+# 6. Conclusion
 In this internship, The HCB dataset was used which includes mostly cognitive, motor, and emotional characteristics. I have used two topological data analysis methods to analyze these data. The first one is using the Sparse-Rips complex to convert brain connectivity matrices of patients into scalar features. The second method is the Mapper algorithm. Mapper converts patients' data into a Mapper complex with some filter functions, gain, and resolution parameters. Filters are scalar vectors that are used to map the data points and divide them into different communities. There are many filter options such as $L_p$ norm, $L$-infinity centrality, first or second components of SVD, or just a column in the data. I have used the gender column and the $L$-infinity centrality as filter functions. Topological features of the Mapper complex have resulted in the identification of the different communities. It is a hard task to tune the parameters in the Mapper to have a meaningful result. I have used the GUDHI library for the topological functions. After finding the communities, I used Kolmogorov-Smirnov(KS) test to statistically prove representative features in each community. If the $p$-value of the KS test was less than $0.05$ for a feature, I have considered it as a specific variable to that community. Then I analyzed different groups and identified the specific characteristics of each group. The male group turned out to be linked with loneliness and sadness, while female groups seemed more linked to cognitive skills.
 
 
-\SpecialSection{Appendix}
-\label{sec:app}
-%
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=1.0\textwidth]{img/corr.png}
-  \caption{\textit{Correlation matrix of data columns. The labels in the image represent the columns.}}
-  \label{corr}
-\end{figure}
-%
 
-The correlation matrix of the data columns is shown in Fig.~\ref{corr} below.
-
-\paragraph{Comments on the correlation matrix:}
-%
-\begin{itemize}
-\item[$\bullet$] If a value is high in a cell in the matrix, it means that these two features are highly correlated. On the other hand, if the value is low, that means these features are independent and do not affect each other.
-\item[$\bullet$] If a value is positive, that means two variables are positively correlated. If a value is negative, that means two variables are negatively correlated. A negative correlation represents the relationship between two variables if one variable increases as the other decreases, and vice versa. For example, as seen in the matrix studied in the present work, gender and strength are negatively correlated.
-\item[$\bullet$] The matrix is symmetric. The diagonal is always 1 because the correlation between each feature and itself is necessarily equal to 1.
-\end{itemize}
-%
-
-
-
-\bibliographystyle{myunsrt}
-\small
-\bibliography{rapport}
-
-
-\end{document}
