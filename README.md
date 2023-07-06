@@ -4,6 +4,7 @@ I finished my internship at [INRIA,France in MathNeuro research group](https://t
 [The Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) was used in this project that consists of 998 patients with cognition, motor, emotion characteristics as well as brain features: volume, thickness, surface area, gray matter volume, white matter volume,...
 
 
+### Summary of this work:
 The Topological Data Analysis (more specifically the Mapper algorithm) was applied to cluster the patients according to their cognitive and brain features. The Mapper created a mapper complex, where the topological features of this complex represents the different communities in the dataset. A topological feature can be a connected component, a 1D hole/loop, a 2D cavity, or more generally a d-dimensional “void”. The communities are the group of data points, mapped into the topological space by the Mapper algorithm. There are four different communities detected by Mapper such as three of them composed of female patients only and one group of consists only male patients. After community detection, we investigate which features are more representative in different communities. The Kolmogorov-Smirnov (KS) test was applied for each feature to measure the statistical difference between data points for each community. If the p-value of the KS test is less than 0.05 then we assign that feature as a unique and representative feature of that community. For example, in one of the female community the "Negative Affect-Anger" and "Executive Function/Inhibition" features are specific to only this community. In the male subgroup, there are two representative features that appeared only in this subgroup: "Negative Affect - Sadness" and "Social Relationships -Loneliness". Surprisingly, the men in the dataset seem to have issues with sadness and loneliness. More details of the Mapper algorithm, methodology and results can be found in Topological-data-analysis-internship-report.pdf. 
 
 
@@ -114,7 +115,7 @@ Connectivity matrices measure the amount of fibers from one region to another re
 of the brain. There is one matrix for each patient and each represents a weighted directed
 graph. There are 116 brain regions represented in this matrices, therefore the shape of one matrx is (116, 116).  An example of connectivity matrix is shown in Fig1 below.
 
-<img width="586" alt="Screenshot 2023-07-05 at 22 24 20" src="https://github.com/CemBirbiri/2022-internship-Topological-data-analysis-of-human-brain/assets/46814542/99f575bd-1f7a-47a2-b09c-a42dff7811a9">
+
 
 If we can find a good way to extract features from connectivity matrices, then we
 can extract underlying knowledge in the diffusion images and add them to the final da-
