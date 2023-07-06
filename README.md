@@ -4,9 +4,9 @@ I finished my internship at [INRIA,France in MathNeuro research group](https://t
 [The Human-Connectome dataset](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) was used in this project that consists of 998 patients with cognition, motor, emotion characteristics as well as brain features: volume, thickness, surface area, gray matter volume, white matter volume,...
 
 
-I applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. The [DyNeuSR](https://braindynamicslab.github.io/dyneusr/) and [GUDHI](https://gudhi.inria.fr/) libraries were used in topological data analysis.
+The Topological Data Analysis (more specifically the Mapper algorithm) was applied to cluster the patients according to their cognitive and brain features. The Mapper created a mapper complex, where the topological features of this complex represents the different communities in the dataset. A topological feature can be a connected component, a 1D hole/loop, a 2D cavity, or more generally a d-dimensional “void”. The communities are the group of data points, mapped into the topological space by the Mapper algorithm. There are four different communities detected by Mapper such as three of them composed of female patients only and one group of consists only male patients. After community detection, we investigate which features are more representative in different communities. The Kolmogorov-Smirnov (KS) test was applied for each feature to measure the statistical difference between data points for each community. If the p-value of the KS test is less than 0.05 then we assign that feature as a unique and representative feature of that community. For example, in one of the female community the "Negative Affect-Anger" and "Executive Function/Inhibition" features are specific to only this community. In the male subgroup, there are two representative features that appeared only in this subgroup: "Negative Affect - Sadness" and "Social Relationships -Loneliness". Surprisingly, the men in the dataset seem to have issues with sadness and loneliness. More details of the Mapper algorithm, methodology and results can be found in Topological-data-analysis-internship-report.pdf. 
 
-A summary of the internship is below:
+
 
 # 1 Introduction
 
@@ -91,18 +91,20 @@ Processing Speed (Pattern Completion Processing Speed), Self-regulation/Impulsiv
 (Delay Discounting), Spatial Orientation (Variable Short Penn Line Orientation
 Test), Sustained Attention (Short Penn Continuous Performance Test), Verbal Epi-
 sodic Memory (Penn Word Memory Test), Working Memory (List Sorting)
+
 • Emotion : Emotion recognition(Penn Emotion Recognition Test), negative affect,
 psychological well-being, social relationships, stress and self efficacy
+
 • Motor : Endurance(2 minute walk test), locomotion (4-meter walk test), dexterity
 (9-hole Pegboard), strength (Grip Strength Dynamometry)
 
-##2.1 Preprocessing
+## 2.1 Preprocessing
 Most of the features in the dataset have scalar data types. Only connectivity matrices
 of patients’ brain scans have graph-type data and some personal information (gender and
 age) is of string type. The Sklearn categorical encoders was used to convert string type
 to scalar.
 
-###Diffusion Tensor Image (Connectivity matrices)
+### Diffusion Tensor Image (Connectivity matrices)
 In the dataset there are brain scans for each patient in the form of diffusion tensor
 images (DTI). DTI is a popular brain imaging technique that measures white matter
 of the brain i.e. the diffusion of water molecules. Each image has an equal
