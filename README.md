@@ -104,103 +104,85 @@ Here is a list of filter functions that I used in my internship work:
 - **A column of the dataset.**  If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
 
 - **$L_p$ Norm:** The filter function can be chosen based on the $L_p$ norm for each data point. Below, $f_{p,k}$ represents the filter function, $\vec{V}$ denotes the coordinates of each row vector: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature(column) and $s$ is total number of features in the dataset. The $L_p$ norm of an individual patient can be calculated as follows:
-%
-\begin{equation}
- f_{p,k}\left(\vec{V}\right) = \left(\sum_{i=1}^{d} |f_i|^p\right) ^{k/p}.
-\label{eq:sumint}
-\end{equation}
-%
+
 <img width="195" alt="Screenshot 2023-07-06 at 13 47 12" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/b75a82bc-b046-46e2-b7c5-49fe5b9c537c">
 
 Note that when $p = 2$ and $k=1$, then the above formula corresponds to the $L_2$ (i.e., Euclidean) norm of a row vector. 
-\item[$\bullet$] \textbf{$\boldsymbol{L}$-infinity centrality:} for each data point $y$, it amounts to finding the maximum distance from $y$ to any other point in the dataset. It assigns each data point to the furthest distance from itself to another data point. Large values of this filter put points that are far away from the center of the dataset. The $L$-infinity centrality can be implemented with a few lines of code, as shown in Fig.~\ref{linf} below.
-%
-\begin{figure}[!t]
-  \centering
-  \includegraphics[width=10cm]{img/l_infinity.png}
-  \caption{\textit{A code snippet that shows how to calculate the $L$-infinity centrality}.}
-  \label{linf}
-\end{figure}
-%
-\item[$\bullet$] \textbf{Singular Value Decomposition (SVD):} SVD is a linear dimension reduction technique. Unlike PCA, it does not center the data points before the actual computation, meaning that it efficiently works with sparse data. In the present work, I have used the Truncated SVD function from Sklearn~\cite{tsvd}. Here, the important part is that one uses the output vector of the Truncated SVD function after using ``fit\_transform'' as the filter vector.
-\item[$\bullet$] \textbf{Principal Component Analysis (PCA):} PCA is a well-known dimension reduction technique. The first component of the PCA result is used as a filter. I have used the PCA function from Sklearn~\cite{pcask}.\\
-\end{itemize}
 
-The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, in~\cite{diabets} where the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $\boldsymbol{L}$-infinity centrality were used as the first and second filters in our Mapper implementation.
+- **L-infinity centrality:** for each data point $y$, it amounts to finding the maximum distance from $y$ to any other point in the dataset. It assigns each data point to the furthest distance from itself to another data point. Large values of this filter put points that are far away from the center of the dataset. The $L$-infinity centrality can be implemented with a few lines of code, as shown in Fig.6 below.
+
+<img width="518" alt="Screenshot 2023-07-06 at 13 48 46" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/0d4402bd-bc34-4c38-a0c3-dc9af9cc1cc3">
+
+- **Singular Value Decomposition (SVD):** SVD is a linear dimension reduction technique. Unlike PCA, it does not center the data points before the actual computation, meaning that it efficiently works with sparse data. In the present work, I have used the Truncated SVD function from Sklearn. Here, the important part is that one uses the output vector of the Truncated SVD function after using "fit_transform" as the filter vector.
+- 
+- **Principal Component Analysis (PCA):** PCA is a well-known dimension reduction technique. The first component of the PCA result is used as a filter. I have used the PCA function from Sklearn.
 
 
-\subsection{Selecting gain and resolution parameters}
+The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, in~\cite{diabets} where the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $L$-infinity centrality were used as the first and second filters in our Mapper implementation.
 
-Resolution refers to the number of intervals required to cover each filter image; the output is a natural number. If one increases the resolution, then the number of communities obtained through the Mapper result increases as well. For example, in Fig.~\ref{mapper}, the resolution is selected as three since there are three intervals.
+
+## 3.2 Selecting gain and resolution parameters
+
+Resolution refers to the number of intervals required to cover each filter image; the output is a natural number. If one increases the resolution, then the number of communities obtained through the Mapper result increases as well. 
 
 The gain is the overlap percentage of the intervals covering each filter image. The range of the gain parameter is $[0,1]$; it is a real number. If one increases the gain, then the connection between communities increases too, and, as a result, the number of edges between nodes in the Mapper result increases. Users should decide about these two parameters carefully to obtain an efficient topological representation of their data. For each filter, one gain and one resolution value should be chosen. 
 
 
-\subsection{Selecting clustering algorithm}
+## 3.3 Selecting clustering algorithm
  
- After mapping the data points into corresponding intervals, the data points get clustered in each interval separately. For this phase, any clustering algorithm can be used. An example of clustering is shown in Fig.~\ref{mapper} (middle panel). To obtain good results, I have tried both the ``DBSCAN'' and the ``Agglomerative'' clustering methods from Sklearn~\cite{dbscan, agg}. 
+ After mapping the data points into corresponding intervals, the data points get clustered in each interval separately. For this phase, any clustering algorithm can be used. To obtain good results, both the DBSCAN and the Agglomerative clustering methods were applied from Sklearn. 
  
  
-\subsection{Resulted Mapper visualization}
+## 3.4 Resulted Mapper visualization
 
 Finally, a simplicial complex is created and it looks like a graph (see Fig.~\ref{mapper}, right panel). The vertices/nodes of the graph represent the cluster sets. The edges represent connectivity information of the complex where an edge is added between two nodes whenever two clusters share the same data points.
 
-Coloring the nodes makes the simplicial complex more understandable. The color of a vertex shows the value of the filter function. For instance, in Fig.~\ref{mapper}, yellow corresponds to high values and blue to low values. More details about the parameters of the Mapper algorithm and how to choose them wisely are given in the following sections.
+Coloring the nodes makes the simplicial complex more understandable. The color of a vertex shows the value of the filter function. For instance, in Fig.7, yellow corresponds to high values and blue to low values. More details about the parameters of the Mapper algorithm and how to choose them wisely are given in the following sections.
 
 A very good visualization output can be achieved by tuning parameters of the Mapper algorithm, such as filters, gain, resolution, clustering algorithm, and hyper-parameters inside the clustering algorithm. To obtain the results presented in this report, the following parameters were chosen:
-%
-
-\begin{itemize}
-\item[$\circ$] Gender column as the first filter, 
-\item[$\circ$] $L$-infinity centrality as the second filter, 
-\item[$\circ$] Resolution of gender column filter: 2, 
-\item[$\circ$] Gain of gender column filter: 0.01, 
-\item[$\circ$] Resolution of the $L$-infinity centrality filter: 19, 
-\item[$\circ$] Gain of the $L$-infinity filter: 0.02, 
-\item[$\circ$] Clustering algorithm: DBSCAN with metric correlation, and $min\_samples$ parameter is 3. The other parameters stayed default.
-\end{itemize}
-
-With this setup, the Mapper complex was obtained which is shown in Fig.~\ref{mapper}. Firstly, using the gender column as the first filter divided the data points into two groups according to the patient's genders. Then, the $L$-infinity centrality filter helped us to find subgroups of patients by placing them far away from the center.
-%
- \begin{figure}[!ht]
-  \centering
-  \includegraphics[width=10cm]{img/mapper_vis.png}
-  \caption{\textit{The mapper complex obtained after applying the Mapper algorithm.}}
-  \label{mapper}
-\end{figure}
-%
-
-%\chapter{TDA Pipeline}
 
 
 
-\section{Community Detection}
+-  Gender column as the first filter, 
+-  $L$-infinity centrality as the second filter, 
+-  Resolution of gender column filter: 2, 
+-  Gain of gender column filter: 0.01, 
+-  Resolution of the $L$-infinity centrality filter: 19, 
+-  Gain of the $L$-infinity filter: 0.02, 
+-  Clustering algorithm: DBSCAN with metric correlation, and min_samples parameter is 3. The other parameters stayed default.
+
+
+With this setup, the Mapper complex was obtained which is shown in Fig.7. Firstly, using the gender column as the first filter divided the data points into two groups according to the patient's genders. Then, the $L$-infinity centrality filter helped us to find subgroups of patients by placing them far away from the center.
+
+<img width="543" alt="Screenshot 2023-07-06 at 13 55 00" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/fb83575c-8100-4cc0-971d-d910c0871941">
+
+
+
+
+
+
+
+# 4. Community Detection
 Community detection is the process where unique groups are found from the complete result of the Mapper algorithm.  What makes these groups unique is that they share different characteristics. First, we find the different communities in the Mapper complex, and then we use some statistical tests to identify what unique features represent each community. 
 
-\subsection{Finding communities}
+## 4.1 Finding communities
 Finding different communities from the Mapper result corresponds to finding the topological features of the simplicial complex. Up to this point, the Mapper algorithm has converted our data into a simplicial complex which is called the Mapper Complex. Topological features of the Mapper complex represent $0$- or $1$-dimensional topological features such as connected components, up/down branches, and loops. Therefore, the topological features of the Mapper complex represent the different communities. So if we extract topological features from the Mapper complex, we can obtain these communities.
 
  The GUDHI library was used to extract topological features from the mapper complex. Connected components and loops are computed with SciPy functions~\cite{scipy}, and branches are detected with ``Union-Find'' and $0$-dimensional persistence of the 1-skeleton. Each shape in Fig.~\ref{communities} below shows one community colored in yellow.
 
-%
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=15cm]{img/comm.png}
-  \caption{\textit{Different communities found by Mapper are shown in yellow: (a) displays the community 1 ($n=205$), which consists only of female patients; (b) is the community 2 ($n=204$), which consists only of male patients; (c) and (d) show community 3 ($n=204$) and community 4 ($n=77$), respectively, and they both consist of female patients only.}}
-  \label{communities}
-\end{figure}
-%
+<img width="600" alt="Screenshot 2023-07-06 at 13 57 10" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/ceb1f536-8c7c-4f05-a1b0-f9d663cb4a3e">
 
-\subsection{Finding unique features of communities}
+
+## 4.2 Finding unique features of communities
  Once the different communities contained in the data have been identified, following the procedure explained in the previous section, one finds which features are special in each community. To do so, one computes the coordinates that best explain a set of nodes compared to the rest of the nodes with a Kolmogorov-Smirnov (KS) test. For each community, all the features in the dataset are considered in the KS test.
  
  If $\vec{V}$ denotes the row vector of each patient, then the coordinates of each row vector are given by: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature (column) and $s$ is the total number of features/columns in the dataset. If one assumes that $C_1$,$C_2$,..., and $C_t$ are communities, then each represents a different topological feature of the Mapper complex. 
 
 Suppose we want to find traits that uniquely define $C_1$. We write 
-\begin{equation}
- C_{1}  = {<p_1,p_2,...,p_k>,}
-\label{eq:sumint}
-\end{equation}
+
+<img width="178" alt="Screenshot 2023-07-06 at 13 57 54" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/0853b2af-ab95-4853-851d-aa57460810c1">
+
+
  where $p_k$ is the $k$th data point that creates the first community, $C_1 $ Then, to find the traits of $C_1$ we proceed as follows.
 
 First, we divide the dataset into two groups. Data points in the first group form $C_1$, and the rest of the data points except $C_1$ form another group. Then, for each feature in the dataset, we examine two different distributions. The first distribution has feature values of $C_1$, the second distribution has the feature values of the rest. Recall that these feature values belong to just one feature(column) of the whole dataset. Then, these two distributions are tested using a Kolmogorov-Smirnov(KS) test. The output of the KS test is a $p$-value that shows the similarity between the two distributions. A larger $p$-value indicates that the two distributions are statistically similar. If a $p$-value of a feature is smaller than 0.05, then that feature is a unique characteristic of $C_1$ and we can say that feature represents that community.
@@ -208,27 +190,10 @@ First, we divide the dataset into two groups. Data points in the first group for
 From a practical viewpoint, I have computed $p$-values for each feature in one community and I only considered $p$-values less than $0.05$. Then, I sorted them in ascending order in a list, the first element of the list representing the most representative feature of that community. 
 
 The pseudo-code of how to find unique features of $C_1$ is written below:
-%
-\begin{algorithm}[!h]
-	\caption{\textit{How to find unique features in a community.}} 
-	\begin{algorithmic}[1]
-	\State $X\leftarrow$ data points that creates $C_1$
-	\State $Y\leftarrow$ rest of the data points except $X$
-		\For {$feature(f) =1,2,\ldots s$}
-		    \State $group1\leftarrow\ X_{f_1}  $ \mathieu{\#data points in C1 belong to a feature $f_1$}
-		    \State $group2\leftarrow\ Y_{f_1} $  \mathieu{\#rest of the data points belong to feature $f_1$}
-		    \State $Pvalue\leftarrow$ $KS(group1, group2)$
-            \State
-            \State $UniqueFeatures$ $=$ $[$ $]$ \mathieu{\#Unique features that represents $C_1$}
-		    \If{$Pvalue < 0.05 $} 
-                \State $UniqueFeatures.append(f_1)$
-            \EndIf
-		\EndFor
-		\State $UniqueFeatures$ $=$ $sort(UniqueFeatures)$ \mathieu{\#Unique features of $C_1$ in ascending order}
-	
-	\end{algorithmic} 
-\end{algorithm}
-%
+
+<img width="569" alt="Screenshot 2023-07-06 at 13 58 26" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/502841b1-f14a-450b-9c14-1a34c26b6406">
+
+
 In this algorithm, $KS$ denotes the Kolmogorov-Smirnov test.  I used the two-sample Kolmogorov-Smirnov test from the Scipy-stats library~\cite{ks_2sample} to test the importance of a feature. The above algorithm is done for each community <$C_1$, $C_2$, ..., $C_t$>. In the end, I calculated statistically important features for each community (with $p$-value less than $0.05$).
  
 \section{Results}
