@@ -213,6 +213,7 @@ Three variables are specific to this group: (i) Language/vocabulary comprehensio
 Fluid intelligence aims to capture how successful a given person is at thinking and finding reasons in an abstract way and solving problems. This female group was found to be better in this test compared to other patients. Language/reading decoding measures the ability of the patient to accurately read and pronounce the words in both English and Spanish. The $F_1$ group has a disjunctive characteristic of this feature with a mean value of $105.5$. No feature only defines female groups but not males.
 
 ----------------------------------------------------------------------
+----------------------------------------------------------------------
 <img width="499" alt="Screenshot 2023-07-06 at 14 11 01" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/c4043e0c-27f4-4e94-9e14-d8bd50d7663b">
 
 
@@ -220,6 +221,7 @@ Fluid intelligence aims to capture how successful a given person is at thinking 
 #### Group $M_1$
 Interestingly, we have one male group in the resulting communities. Men in this group are linked with two specific emotional categories: Sadness and loneliness. These features do not appear in female groups. Surprisingly, men in the dataset seem to have issues with sadness and loneliness. It makes sense that loneliness appears with sadness because they are related emotions. Patients in $M_1$ share the verbal episodic memory with patients in $F_2$, and spatial orientation feature with patients in $F_1$.
 
+----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
 <img width="487" alt="Screenshot 2023-07-06 at 14 11 43" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/3b245e1d-3349-4313-8a71-9faf0fdcd615">
@@ -229,13 +231,16 @@ Interestingly, we have one male group in the resulting communities. Men in this 
 This female group is detected by the variables "Negative Affect-Anger" and "Executive Function/ Inhibition". Anger is described as the attitude of a person about cynicism, hostility, and frustrating experiences. People in $F_2$ are linked to anger problems. The other feature that is specific to $F_2$ is "executive function/inhibition". Participants' attention and inhibitory control are tested. Our results indicate that the $F_2$ group is characterized by attention skills.
 
 ----------------------------------------------------------------------
+----------------------------------------------------------------------
 <img width="494" alt="Screenshot 2023-07-06 at 14 13 22" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/393d9b38-315f-49ac-aab6-7316b9e27d1a">
 
 
 
-
 #### Group $F_3$
+
 This group has no specific feature that only belongs to itself. Besides the common features of the four groups, $F_3$ is linked to stress and self-efficacy. However, this variable is also shared by $F_1$ and $M_1$. I interpreted this group as an average female group for which there is no diverse trait.
+
+----------------------------------------------------------------------
 ----------------------------------------------------------------------
 Among the four groups, gender and strength (grip strength dynamometry) are the first two common features that define these communities with the smallest $p$-values ($<0.05$). The grip strength dynamometry test is adopted from the American Society of Hand Therapy, where the participants sit on a chair, bend their elbows at $90$ degrees, and are asked to squeeze to dynamometer as hard as they can with their right and left hands. The result of the test provides a digital score of force in pounds. This motor skill shows how strong the person is. The average value of strength in the women groups is $92.31$, $87.54$, and $84.23$ in $F_1$, $F_2$ and $F_3$, respectively. The average strength in the male group is larger than in the female groups, with a value of $122.28$. In general, physical power is greater in men than women, which is why strength became a key feature to represent these groups.
 
