@@ -94,7 +94,7 @@ The Mapper has various steps, which can be seen in Fig.4 and that are explained 
 ## 3.1 Selecting the filter function
  The key idea of the Mapper algorithm is to map data points into a metric space using some filters defined on data points while capturing topological and geometric information at a specified resolution and gain. The filter function (also called a lens) is the metric that allows us to map our data points. It should be a scalar vector whose size equals the number of data points in the dataset. For example, in our case, the shape of the final dataset is (998,29), so the size of one filter function must be (998,1). Filter functions are calculated based on the dataset. Each entry in a filter vector represents the cover of an individual data point. Each row in a dataset is converted to a single number, i.e., each row provides a real number in the filter vector.
 
- Filter selection is a key point of the Mapper algorithm. In Fig.~\ref{diff_lenses}, three different filters are applied to the same point cloud data such as vertical, horizontal, and radial filters. Although the point cloud, in this case,  is small with only 2 dimensions, this is a good example of how filters could change the Mapper result. Filter choice depends on the data, the complexity of the data, and the goal of the Mapper user. A different filter function
+ Filter selection is a key point of the Mapper algorithm. In Fig.5, three different filters are applied to the same point cloud data such as vertical, horizontal, and radial filters. Although the point cloud, in this case,  is small with only 2 dimensions, this is a good example of how filters could change the Mapper result. Filter choice depends on the data, the complexity of the data, and the goal of the Mapper user. A different filter function
 will generate a graph with a different shape, thus filters allow one to explore the data from different mathematical perspectives. 
 
  <img width="572" alt="Screenshot 2023-07-06 at 13 44 33" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/19668dbb-aae3-454f-beec-3a2f225b3fab">
@@ -118,7 +118,7 @@ Note that when $p = 2$ and $k=1$, then the above formula corresponds to the $L_2
 - **Principal Component Analysis (PCA):** PCA is a well-known dimension reduction technique. The first component of the PCA result is used as a filter. I have used the PCA function from Sklearn.
 
 
-The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, [in * *Identification of type 2 diabetes subgroups through topological analysis of patient similarity* *](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4780757/) the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $L$-infinity centrality were used as the first and second filters in our Mapper implementation.
+The choice of the filter is an important factor for achieving a good result in Mapper. Instead of using one filter, one can use more filters to separate the data better. Applying multiple filters is a popular choice, for instance, in [Identification of type 2 diabetes subgroups through topological analysis of patient similarity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4780757/) paper, the authors have used the $L$-infinity centrality as well as principal metric singular value decomposition (SVD1) and managed to identify a new subgroup of type-2 diabetes. The gender column and $L$-infinity centrality were used as the first and second filters in our Mapper implementation.
 
 
 ## 3.2 Selecting gain and resolution parameters
@@ -212,7 +212,7 @@ Three variables are specific to this group: (i) Language/vocabulary comprehensio
 
 Fluid intelligence aims to capture how successful a given person is at thinking and finding reasons in an abstract way and solving problems. This female group was found to be better in this test compared to other patients. Language/reading decoding measures the ability of the patient to accurately read and pronounce the words in both English and Spanish. The $F_1$ group has a disjunctive characteristic of this feature with a mean value of $105.5$. No feature only defines female groups but not males.
 
-
+----------------------------------------------------------------------
 <img width="499" alt="Screenshot 2023-07-06 at 14 11 01" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/c4043e0c-27f4-4e94-9e14-d8bd50d7663b">
 
 
@@ -220,7 +220,7 @@ Fluid intelligence aims to capture how successful a given person is at thinking 
 #### Group $M_1$
 Interestingly, we have one male group in the resulting communities. Men in this group are linked with two specific emotional categories: Sadness and loneliness. These features do not appear in female groups. Surprisingly, men in the dataset seem to have issues with sadness and loneliness. It makes sense that loneliness appears with sadness because they are related emotions. Patients in $M_1$ share the verbal episodic memory with patients in $F_2$, and spatial orientation feature with patients in $F_1$.
 
-
+----------------------------------------------------------------------
 
 <img width="487" alt="Screenshot 2023-07-06 at 14 11 43" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/3b245e1d-3349-4313-8a71-9faf0fdcd615">
 
@@ -228,6 +228,7 @@ Interestingly, we have one male group in the resulting communities. Men in this 
 #### Group $F_2$
 This female group is detected by the variables "Negative Affect-Anger" and "Executive Function/ Inhibition". Anger is described as the attitude of a person about cynicism, hostility, and frustrating experiences. People in $F_2$ are linked to anger problems. The other feature that is specific to $F_2$ is "executive function/inhibition". Participants' attention and inhibitory control are tested. Our results indicate that the $F_2$ group is characterized by attention skills.
 
+----------------------------------------------------------------------
 <img width="494" alt="Screenshot 2023-07-06 at 14 13 22" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/393d9b38-315f-49ac-aab6-7316b9e27d1a">
 
 
@@ -235,7 +236,7 @@ This female group is detected by the variables "Negative Affect-Anger" and "Exec
 
 #### Group $F_3$
 This group has no specific feature that only belongs to itself. Besides the common features of the four groups, $F_3$ is linked to stress and self-efficacy. However, this variable is also shared by $F_1$ and $M_1$. I interpreted this group as an average female group for which there is no diverse trait.
-
+----------------------------------------------------------------------
 Among the four groups, gender and strength (grip strength dynamometry) are the first two common features that define these communities with the smallest $p$-values ($<0.05$). The grip strength dynamometry test is adopted from the American Society of Hand Therapy, where the participants sit on a chair, bend their elbows at $90$ degrees, and are asked to squeeze to dynamometer as hard as they can with their right and left hands. The result of the test provides a digital score of force in pounds. This motor skill shows how strong the person is. The average value of strength in the women groups is $92.31$, $87.54$, and $84.23$ in $F_1$, $F_2$ and $F_3$, respectively. The average strength in the male group is larger than in the female groups, with a value of $122.28$. In general, physical power is greater in men than women, which is why strength became a key feature to represent these groups.
 
 There are also three other features shared by all of the groups, namely dexterity (9-hole Pegboard), endurance (2 minutes walk test), and episodic memory. Dexterity is a test where participants are asked to put and remove 9 plastic pegs into a pegboard with each hand. The score is the time taken by the participants (3-85 years old) to finish the task. An endurance test is used to test the sub-maximal cardiovascular endurance. Participants walk a 50-foot long lane (back and forth) in 2 minutes and the score is the distance they were able to achieve. On the other hand, episodic memory measures how well one can remember previous experiences within the context of location, time, or emotions. Participants are asked to recall the sequence of objects that are in a specific order shown on the computer screen. If they can remember correctly the order of two objects they get one point. All these three tests resulted to be common features to represent the four groups. Here, it is normal to have common features among groups, yet the important part of TDA analysis is to find specific characteristics that are not shared.
