@@ -7,9 +7,10 @@ I finished my internship at [INRIA,France in MathNeuro research group](https://t
 I applied Topological Data Analysis (more specifically the Mapper algorithm) to cluster the patients according to their age and found different characteristics of subgroups. I found 2 younger group(age: 22-30), 1 older group(age: 31+) and 1 mixed-age group. The [DyNeuSR](https://braindynamicslab.github.io/dyneusr/) and [GUDHI](https://gudhi.inria.fr/) libraries were used in topological data analysis.
 
 A summary of the internship is below:
-#1 Introduction
 
-##1.1 What is Topological Data Analysis?
+# 1 Introduction
+
+## 1.1 What is Topological Data Analysis?
 
 Data gathering and analyses become a fundamental power in all research communities
 such as medicine, engineering, social sciences, economy or mathematics, to name but a
@@ -24,7 +25,7 @@ geometrical methods to infer complex topological structures such as connected co
 where the data is usually represented as point clouds or distance matrices in a Euclidean
 metric space. 
 
-##1.2 Applications of TDA in Data Science
+## 1.2 Applications of TDA in Data Science
 
 There have been many promising results in recent years for applying topological and
 geometric approaches in different areas. TDA was used in material sciences, shape
@@ -58,7 +59,7 @@ communities with their features in the topological network. Overall, the TDA pip
 3. Detecting communities from the result of Mapper.
 4. Discovering what features make these communities unique.
 
-#2 The Dataset and Preprocessing
+# 2 The Dataset and Preprocessing
 
 The dataset belongs to the [NIH Human Connectome Project (HCP)](https://wiki.humanconnectome.org/display/PublicData/HCP-YA+Data+Dictionary-+Updated+for+the+1200+Subject+Release#HCPYADataDictionaryUpdatedforthe1200SubjectRelease) released in 2009
 in the Blueprint Grand Challenge. The purpose of the Human Connectome Project
@@ -77,8 +78,11 @@ tive behavior, motor skills, emotion, sensory (vision, taste, pain, audition, ol
 more.
 
  The following features were selected for this research :
+ 
 • Diffusion Tensor Image (Connectivity matrices)
+
 • Personal information : Age and gender
+
 • Cognition : Episodic memory(Picture Sequence Memory), Executive function :
 Cognitive flexibility(Dimensional Change Card Sort) and inhibition (Flanker Task),
 Fluid Intelligence(Penn Progressive Matrices), Language/Reading Decoding (Oral
