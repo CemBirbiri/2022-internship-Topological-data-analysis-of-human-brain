@@ -101,16 +101,17 @@ will generate a graph with a different shape, thus filters allow one to explore 
 
 
 Here is a list of filter functions that I used in my internship work:
-- **A column of the dataset**
-   If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
+- **A column of the dataset.**  If we want to visualize the data according to a column in the data we can choose that column as a filter. Using a specific column as a filter causes the layout to separate the variables of that column. For example, if one considers a dataset of patients that have different types of breast cancer. These types are represented in the dataset in a specific column. The goal is to visualize the data based on different cancer types. Then, that specific column can be used to separate the data points based on it~\cite{lum2013extracting}. Another example is that the gender information of patients can be used as a filter. If there are two genders in the data, using the gender column will put the data points into two different groups. In this work, the gender column is used as the first filter.
 
-\item[$\bullet$] \textbf{$\boldsymbol{L_p}$ Norm:} The filter function can be chosen based on the $L_p$ norm for each data point. Below, $f_{p,k}$ represents the filter function, $\vec{V}$ denotes the coordinates of each row vector: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature(column) and $s$ is total number of features in the dataset. The $L_p$ norm of an individual patient can be calculated as follows:
+- **$L_p$ Norm:** The filter function can be chosen based on the $L_p$ norm for each data point. Below, $f_{p,k}$ represents the filter function, $\vec{V}$ denotes the coordinates of each row vector: $\vec{V} = <f_1,f_2,...,f_s>$ where $f_i$ represents the $i$th feature(column) and $s$ is total number of features in the dataset. The $L_p$ norm of an individual patient can be calculated as follows:
 %
 \begin{equation}
  f_{p,k}\left(\vec{V}\right) = \left(\sum_{i=1}^{d} |f_i|^p\right) ^{k/p}.
 \label{eq:sumint}
 \end{equation}
 %
+<img width="195" alt="Screenshot 2023-07-06 at 13 47 12" src="https://github.com/CemBirbiri/Topological-data-analysis-of-human-brain-2022-internship/assets/46814542/b75a82bc-b046-46e2-b7c5-49fe5b9c537c">
+
 Note that when $p = 2$ and $k=1$, then the above formula corresponds to the $L_2$ (i.e., Euclidean) norm of a row vector. 
 \item[$\bullet$] \textbf{$\boldsymbol{L}$-infinity centrality:} for each data point $y$, it amounts to finding the maximum distance from $y$ to any other point in the dataset. It assigns each data point to the furthest distance from itself to another data point. Large values of this filter put points that are far away from the center of the dataset. The $L$-infinity centrality can be implemented with a few lines of code, as shown in Fig.~\ref{linf} below.
 %
