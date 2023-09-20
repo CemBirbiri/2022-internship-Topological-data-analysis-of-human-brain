@@ -1,4 +1,5 @@
 # Internship-2022-Topological-Data-Analysis
+This work is published as a preprint in HAL Open Science, and you can find it [here.](https://hal.science/hal-04181002)
 
 Topological Data Analysis(TDA) is a novel and popular mathematical technique to analyse high-dimensional datasets and extract features to use in Machine Learning models. TDA provides detailed information about the characteristics of the data by providing some topological, statistical, and geometrical methods. TDA can be used in:
 
